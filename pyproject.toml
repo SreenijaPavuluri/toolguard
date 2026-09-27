@@ -1,0 +1,23 @@
+[project]
+name = "toolguard"
+version = "0.1.0"
+description = "Prompt-injection detection for agent tool outputs, measured on cross-source human-written attacks"
+authors = [{ name = "Sreenija Pavuluri" }]
+requires-python = ">=3.10"
+license = { text = "MIT" }
+
+[project.scripts]
+toolguard = "toolguard.cli:main"
+
+[tool.setuptools]
+packages = ["toolguard"]
+
+[tool.ruff]
+line-length = 160
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+
+[tool.ruff.lint]
+select = ["E", "F", "W", "I"]
+ignore = ["E501"]

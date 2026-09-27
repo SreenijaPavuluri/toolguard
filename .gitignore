@@ -1,0 +1,8 @@
+.venv/
+data/
+models/
+__pycache__/
+*.egg-info/
+results/test_scores.npy
+.pytest_cache/
+.ruff_cache/
