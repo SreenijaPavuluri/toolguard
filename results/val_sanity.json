@@ -1,0 +1,9 @@
+{
+  "val_n": 200,
+  "val_positive_rate": 0.5,
+  "tfidf_val_auroc": 0.9709,
+  "toolguard_val_auroc": 0.7935,
+  "toolguard_val_raw_prompts_auroc": 0.925,
+  "toolguard_recall_on_bare_gandalf_attacks": 0.0,
+  "bare_gandalf_attacks_n": 120
+}

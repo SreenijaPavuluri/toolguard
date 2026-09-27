@@ -1,0 +1,58 @@
+{
+  "Regex rules": {
+    "median_ms": 1.3740210561081767,
+    "p95_ms": 2.999653865117579,
+    "docs": 10,
+    "median_minilm_tokens": 1147.0,
+    "size_mb": 0.0
+  },
+  "TF-IDF + LR": {
+    "median_ms": 1.4352500438690186,
+    "p95_ms": 2.8980627306737,
+    "docs": 10,
+    "median_minilm_tokens": 1147.0,
+    "size_mb": 7.691567999999999
+  },
+  "ToolGuard (MiniLM, windowed)": {
+    "median_ms": 172.5863750325516,
+    "p95_ms": 334.93868787772936,
+    "docs": 10,
+    "median_minilm_tokens": 1147.0,
+    "size_mb": 90.867952
+  },
+  "Ablation: ToolGuard without windowing": {
+    "median_ms": 58.726479415781796,
+    "p95_ms": 66.47476443322375,
+    "docs": 10,
+    "median_minilm_tokens": 1147.0,
+    "size_mb": 90.867952
+  },
+  "ToolGuard int8 (dynamic quantization)": {
+    "median_ms": 687.1020415564999,
+    "p95_ms": 1383.572139462921,
+    "docs": 10,
+    "median_minilm_tokens": 1147.0,
+    "size_mb_state_dict_estimate": 47.711688
+  },
+  "ProtectAI DeBERTa (default, truncate 512)": {
+    "median_ms": 840.8095835475251,
+    "p95_ms": 1431.6944589721968,
+    "docs": 10,
+    "median_minilm_tokens": 1147.0,
+    "size_mb": 737.719272
+  },
+  "ProtectAI DeBERTa + our windowing": {
+    "median_ms": 2991.99283355847,
+    "p95_ms": 5924.82386465417,
+    "docs": 10,
+    "median_minilm_tokens": 1147.0,
+    "size_mb": 737.719272
+  },
+  "quantization_accuracy_change": {
+    "f1": 0.0005910165484633578,
+    "auroc": -0.0031249999999999334,
+    "recall": 0.0,
+    "recall_at_1fpr": 0.0
+  },
+  "threads": 8
+}

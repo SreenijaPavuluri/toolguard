@@ -1,0 +1,7 @@
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+/Users/sree/toolguard/.venv/lib/python3.12/site-packages/torch/jit/_script.py:1491: FutureWarning: `torch.jit.script` is deprecated. Please switch to `torch.compile` or `torch.export`.
+  warnings.warn(
+Loading weights:   0%|          | 0/202 [00:00<?, ?it/s]Loading weights:  37%|███▋      | 75/202 [00:00<00:00, 749.61it/s]Loading weights: 100%|██████████| 202/202 [00:00<00:00, 1733.39it/s]
+test default_truncate512 1445s
+test windowed512 1085s
+mean -4.2386533154795565
