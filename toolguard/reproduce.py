@@ -14,6 +14,7 @@ def main():
     run("toolguard.train")
     run("toolguard.train", "--train", "train_nohn", "--out", "models/toolguard-minilm-nohn")
     run("toolguard.evaluate")
+    run("toolguard.val_sanity")
 
 
 if __name__ == "__main__":

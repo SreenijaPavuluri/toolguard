@@ -19,6 +19,14 @@ from .model import score_documents
 R = Path("results")
 
 
+def _quantize(model, *args, **kwargs):
+    """Dynamic int8 quantization; picks an available engine (qnnpack on ARM, fbgemm on x86)."""
+    import torch
+    engines = torch.backends.quantized.supported_engines
+    torch.backends.quantized.engine = "qnnpack" if "qnnpack" in engines else "fbgemm"
+    return torch.ao.quantization.quantize_dynamic(model, *args, **kwargs)
+
+
 def sigmoid(z):
     return 1 / (1 + np.exp(-np.clip(z, -50, 50)))
 
@@ -70,7 +78,7 @@ def main(latency_docs=10):
         z3, _ = score_documents(tg3, tok3, texts, windowed=True)
         p3 = sigmoid(z3 / cfg3["temperature"])
         models["Ablation: ToolGuard without hard negatives"] = dict(score=p3, pred=p3 >= cfg3["threshold"])
-    tgq = torch.ao.quantization.quantize_dynamic(tg, {torch.nn.Linear}, dtype=torch.qint8)
+    tgq = _quantize(tg, {torch.nn.Linear}, dtype=torch.qint8)
     zq, _ = score_documents(tgq, tok, texts, windowed=True)
     pq = sigmoid(zq / T)
     models["ToolGuard int8 (dynamic quantization)"] = dict(score=pq, pred=pq >= thr)

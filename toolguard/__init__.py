@@ -12,6 +12,14 @@ __version__ = "0.1.0"
 DEFAULT_MODEL = os.environ.get("TOOLGUARD_MODEL", str(Path(__file__).resolve().parent.parent / "models" / "toolguard-minilm"))
 
 
+def _quantize(model, *args, **kwargs):
+    """Dynamic int8 quantization; picks an available engine (qnnpack on ARM, fbgemm on x86)."""
+    import torch
+    engines = torch.backends.quantized.supported_engines
+    torch.backends.quantized.engine = "qnnpack" if "qnnpack" in engines else "fbgemm"
+    return torch.ao.quantization.quantize_dynamic(model, *args, **kwargs)
+
+
 @dataclass
 class ScanResult:
     is_injection: bool
@@ -32,7 +40,7 @@ class Guard:
         tok = AutoTokenizer.from_pretrained(path)
         model = AutoModelForSequenceClassification.from_pretrained(path).eval()
         if quantize:
-            model = torch.ao.quantization.quantize_dynamic(model, {torch.nn.Linear}, dtype=torch.qint8)
+            model = _quantize(model, {torch.nn.Linear}, dtype=torch.qint8)
         cfg = json.loads((Path(path) / "toolguard_config.json").read_text())
         return cls(model, tok, cfg)
 
